@@ -26,10 +26,14 @@ plugins:
 provider:
   name: aws
   runtime: nodejs10.x
+  stage: dev
+  region: us-east-1
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "ses:SendEmail"
+      Resource: ["*"]
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -63,6 +67,11 @@ provider:
 functions:
   contactMailer:
     handler: handler.contactMailer
+    events:
+      - http:
+          path: contact-mailer
+          method: post
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
