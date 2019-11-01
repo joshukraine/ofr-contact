@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.contact = async event => {
+module.exports.contactMailer = async event => {
   return {
     statusCode: 200,
     body: JSON.stringify(
