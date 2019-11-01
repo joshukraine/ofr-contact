@@ -2,5 +2,8 @@
   "name": "ofr-contact",
   "author": "Joshua Steele <joshukraine@gmail.com>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "serverless-offline": "^5.12.0"
+  }
 }
