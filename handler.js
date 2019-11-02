@@ -4,19 +4,17 @@ const ses = new aws.SES();
 const myEmail = process.env.EMAIL;
 const myDomain = process.env.DOMAIN;
 
-function generateResponse(code, payload) {
-  return {
-    statusCode: code,
-    headers: {
-      'Access-Control-Allow-Origin': myDomain,
-      'Access-Control-Allow-Headers': 'x-requested-with',
-      'Access-Control-Allow-Credentials': true,
-    },
-    body: JSON.stringify(payload),
-  };
-}
+const generateResponse = (code, payload) => ({
+  statusCode: code,
+  headers: {
+    'Access-Control-Allow-Origin': myDomain,
+    'Access-Control-Allow-Headers': 'x-requested-with',
+    'Access-Control-Allow-Credentials': true,
+  },
+  body: JSON.stringify(payload),
+});
 
-function generateError(code, err) {
+const generateError = (code, err) => {
   console.log(err);
   return {
     statusCode: code,
@@ -27,9 +25,9 @@ function generateError(code, err) {
     },
     body: JSON.stringify(err.message),
   };
-}
+};
 
-function generateEmailParamsFromJSON(body) {
+const generateEmailParamsFromJSON = (body) => {
   const { name, email, content } = JSON.parse(body);
   console.log(name, email, content);
   if (!(name && email && content)) {
@@ -53,7 +51,7 @@ function generateEmailParamsFromJSON(body) {
       },
     },
   };
-}
+};
 
 module.exports.sendJSON = async (event) => {
   try {
