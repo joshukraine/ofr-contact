@@ -3,7 +3,21 @@
   "author": "Joshua Steele <joshukraine@gmail.com>",
   "license": "MIT",
   "private": true,
+  "lint-staged": {
+    "*.js": "eslint --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "serverless-offline": "^5.12.0"
   }
 }
