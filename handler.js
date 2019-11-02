@@ -29,11 +29,11 @@ function generateError(code, err) {
   };
 }
 
-function generateEmailParams(body) {
-  const { email, name, content } = JSON.parse(body);
-  console.log(email, name, content);
-  if (!(email && name && content)) {
-    throw new Error('Missing parameters! Make sure to add parameters \'email\', \'name\', \'content\'.');
+function generateEmailParamsFromJSON(body) {
+  const { name, email, content } = JSON.parse(body);
+  console.log(name, email, content);
+  if (!(name && email && content)) {
+    throw new Error('Missing parameters! Make sure to add parameters \'name\', \'email\', \'content\'.');
   }
 
   return {
@@ -55,9 +55,9 @@ function generateEmailParams(body) {
   };
 }
 
-module.exports.send = async (event) => {
+module.exports.sendJSON = async (event) => {
   try {
-    const emailParams = generateEmailParams(event.body);
+    const emailParams = generateEmailParamsFromJSON(event.body);
     const data = await ses.sendEmail(emailParams).promise();
     return generateResponse(200, data);
   } catch (err) {
