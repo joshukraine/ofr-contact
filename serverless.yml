@@ -13,7 +13,8 @@ provider:
   profile: ${self:custom.secrets.PROFILE}
   environment:
     NODE_ENV: ${self:custom.secrets.NODE_ENV}
-    EMAIL: ${self:custom.secrets.EMAIL}
+    SRC_EMAIL: ${self:custom.secrets.SRC_EMAIL}
+    DEST_EMAIL: ${self:custom.secrets.DEST_EMAIL}
     DOMAIN: ${self:custom.secrets.DOMAIN}
   iamRoleStatements:
     - Effect: "Allow"
