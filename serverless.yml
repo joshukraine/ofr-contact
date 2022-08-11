@@ -7,7 +7,7 @@ custom:
 
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs16.x
   stage: ${self:custom.secrets.NODE_ENV}
   region: us-east-1
   profile: ${self:custom.secrets.PROFILE}
